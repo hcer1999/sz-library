@@ -13,7 +13,7 @@ export default function Home() {
             查询武将属性、战法、兵书、阵容搭配等信息，助您在战场上所向披靡
           </p>
           <div className="space-x-4">
-            <Link href="/generals">
+            <Link href="/heroes">
               <Button size="lg">浏览武将图鉴</Button>
             </Link>
             <Link href="/formations">

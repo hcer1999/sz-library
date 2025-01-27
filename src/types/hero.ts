@@ -1,3 +1,4 @@
+import { Skill } from './skill';
 export interface Hero {
   id: number
   hero_id: number
@@ -10,8 +11,10 @@ export interface Hero {
   goodat: string
   selfskill: string
   selfskill_id: number
+  selfskill_id_info: Skill
   convertskill: string
   convertskill_id: number
+  convertskill_id_info: Skill
   power: number
   intelligence: number
   defense: number

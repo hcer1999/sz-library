@@ -8,7 +8,7 @@ interface SkillCardProps {
 
 export function SkillCard({ skill }: SkillCardProps) {
   const getTypeText = (type: number) => {
-    const types = {
+    const types: Record<number, string> = {
       1: "被动战法",
       2: "主动战法",
       3: "追击战法",
@@ -20,21 +20,11 @@ export function SkillCard({ skill }: SkillCardProps) {
   }
 
   return (
-    <Link href={`/skills/${skill.id}`}>
+    <Link href={`#`}>
       <div className="group relative overflow-hidden rounded-lg border bg-background p-4 transition-colors hover:bg-accent">
         <div className="space-y-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <div className="relative h-12 w-12 overflow-hidden rounded-lg">
-                <ImageFallback
-                  src={`/images/skills/${skill.img}`}
-                  alt={skill.name}
-                  width={48}
-                  height={48}
-                  className="object-cover"
-                  fallbackClassName="bg-primary/10"
-                />
-              </div>
               <div>
                 <h3 className="font-bold text-lg">{skill.name}</h3>
                 <p className="text-sm text-muted-foreground">{getTypeText(skill.type)}</p>

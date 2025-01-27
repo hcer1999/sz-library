@@ -15,6 +15,7 @@ import {
 import { heroesApi } from "@/lib/api"
 import type { Hero } from "@/types/hero"
 import { useDebounce } from "@/hooks/useDebounce"
+import { HeroCardSkeleton } from "@/components/hero/HeroCardSkeleton"
 
 export default function HeroesPage() {
   const [heroes, setHeroes] = useState<Hero[]>([])
@@ -48,7 +49,7 @@ export default function HeroesPage() {
       setLoading(true)
       const response = await heroesApi.getHeroes({
         current: page,
-        pageSize: 20,
+        pageSize: 21,
         search: debouncedFilters.search,
         country: debouncedFilters.country,
         type: debouncedFilters.type
@@ -114,10 +115,16 @@ export default function HeroesPage() {
       </div>
       
       {loading ? (
-        <div className="text-center py-4">加载中...</div>
+        <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+          {Array.from({ length: 6 }).map((_, index) => (
+            <div key={index} className="w-full flex justify-center">
+              <HeroCardSkeleton />
+            </div>
+          ))}
+        </div>
       ) : (
         <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
             {heroes.map((hero) => (
               <div key={hero.id} className="w-full flex justify-center">
                 <HeroCard
